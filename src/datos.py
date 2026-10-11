@@ -23,8 +23,9 @@ def limpiar(df, features):
 def estandarizar(X):
     """Deja cada columna con media 0 y desviación 1."""
     media = X.mean(axis=0)
-    desv = X.std(axis=0)
-    return (X - media) / desv
+    std = X.std(axis=0)
+    std = np.where(std == 0, 1, std)
+    return (X - media) / std
 
 
 def dividir(X, y, prueba=0.2, semilla=42):
